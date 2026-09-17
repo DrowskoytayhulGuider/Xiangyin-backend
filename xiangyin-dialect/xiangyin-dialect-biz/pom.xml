@@ -61,5 +61,9 @@
             <groupId>com.sleepywang</groupId>
             <artifactId>xiangyin-common-datasource</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.sleepywang</groupId>
+            <artifactId>xiangyin-common-log</artifactId>
+        </dependency>
     </dependencies>
 </project>

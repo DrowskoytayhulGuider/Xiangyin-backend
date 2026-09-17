@@ -71,7 +71,7 @@ public class AnylineDataSourceHelper {
 	 * @param dsName 数据源名称
 	 * @param dataSource Spring 动态数据源中解析出的数据源实例
 	 */
-	private void registerIfAbsent(String dsName, DataSource dataSource) {
+	private synchronized void registerIfAbsent(String dsName, DataSource dataSource) {
 		if (DataSourceHolder.exists(dsName)) {
 			return;
 		}

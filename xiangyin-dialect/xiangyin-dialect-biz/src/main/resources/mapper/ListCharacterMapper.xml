@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sleepywang.xiangyin.dialect.mapper.ListCharacterMapper">
+
+  <resultMap id="listCharacterMap" type="com.sleepywang.xiangyin.dialect.entity.ListCharacterEntity">
+        <id property="id" column="id"/>
+        <result property="character" column="character"/>
+        <result property="guangyunInitialId" column="guangyun_initial_id"/>
+        <result property="guangyunTone" column="guangyun_tone"/>
+        <result property="meaning" column="meaning"/>
+        <result property="guangyunRhymeId" column="guangyun_rhyme_id"/>
+        <result property="characterListId" column="character_list_id"/>
+        <result property="remark" column="remark"/>
+        <result property="isDeleted" column="is_deleted"/>
+  </resultMap>
+</mapper>

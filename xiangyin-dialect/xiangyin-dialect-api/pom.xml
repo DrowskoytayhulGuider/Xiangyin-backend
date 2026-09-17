@@ -20,5 +20,13 @@
             <groupId>com.sleepywang</groupId>
             <artifactId>xiangyin-common-feign</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring</artifactId>
+        </dependency>
     </dependencies>
 </project>
