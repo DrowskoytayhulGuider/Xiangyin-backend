@@ -1,0 +1,5 @@
+com.sleepywang.xiangyin.common.data.cache.RedisTemplateConfiguration
+com.sleepywang.xiangyin.common.data.cache.RedisMessageConfiguration
+com.sleepywang.xiangyin.common.data.cache.RedisCacheManagerConfiguration
+com.sleepywang.xiangyin.common.data.cache.RedisCacheAutoConfiguration
+com.sleepywang.xiangyin.common.data.mybatis.MybatisPlusConfiguration

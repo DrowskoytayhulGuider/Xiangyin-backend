@@ -1,0 +1,10 @@
+com.sleepywang.xiangyin.common.security.service.PigDefaultUserDetailsServiceImpl
+com.sleepywang.xiangyin.common.security.service.PigMobileUserDetailServiceImpl
+com.sleepywang.xiangyin.common.security.service.PigRedisOAuth2AuthorizationService
+com.sleepywang.xiangyin.common.security.service.PigRedisOAuth2AuthorizationConsentService
+com.sleepywang.xiangyin.common.security.component.PigBootCorsProperties
+com.sleepywang.xiangyin.common.security.component.PigSecurityInnerAspect
+com.sleepywang.xiangyin.common.security.component.PigInnerHeaderRemoveFilter
+com.sleepywang.xiangyin.common.security.component.PigSecurityMessageSourceConfiguration
+com.sleepywang.xiangyin.common.security.service.PigRemoteRegisteredClientRepository
+com.sleepywang.xiangyin.common.security.captcha.CaptchaAutoConfiguration

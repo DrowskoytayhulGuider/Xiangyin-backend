@@ -1,5 +1,0 @@
-com.pig4cloud.pig.common.data.cache.RedisTemplateConfiguration
-com.pig4cloud.pig.common.data.cache.RedisMessageConfiguration
-com.pig4cloud.pig.common.data.cache.RedisCacheManagerConfiguration
-com.pig4cloud.pig.common.data.cache.RedisCacheAutoConfiguration
-com.pig4cloud.pig.common.data.mybatis.MybatisPlusConfiguration

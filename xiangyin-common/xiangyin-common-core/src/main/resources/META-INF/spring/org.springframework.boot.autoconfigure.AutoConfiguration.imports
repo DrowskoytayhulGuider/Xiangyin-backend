@@ -1,0 +1,5 @@
+com.sleepywang.xiangyin.common.core.config.JacksonConfiguration
+com.sleepywang.xiangyin.common.core.config.MessageSourceConfiguration
+com.sleepywang.xiangyin.common.core.config.WebCommonConfiguration
+com.sleepywang.xiangyin.common.core.config.ImmutableConfiguration
+com.sleepywang.xiangyin.common.core.util.SpringContextHolder

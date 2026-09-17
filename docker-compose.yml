@@ -23,12 +23,12 @@ services:
     networks:
       - spring_cloud_default
 
-  pig-register:
+  xiangyin-register:
     build:
-      context: ./pig-register
+      context: ./xiangyin-register
     restart: always
-    container_name: pig-register
-    image: pig-register
+    container_name: xiangyin-register
+    image: xiangyin-register
     ports:
       - 8848:8848
       - 9848:9848
@@ -36,61 +36,61 @@ services:
     networks:
       - spring_cloud_default
 
-  pig-gateway:
+  xiangyin-gateway:
     build:
-      context: ./pig-gateway
+      context: ./xiangyin-gateway
     restart: always
-    container_name: pig-gateway
-    image: pig-gateway
+    container_name: xiangyin-gateway
+    image: xiangyin-gateway
     ports:
       - 9999:9999
     networks:
       - spring_cloud_default
 
-  pig-auth:
+  xiangyin-auth:
     build:
-      context: ./pig-auth
+      context: ./xiangyin-auth
     restart: always
-    container_name: pig-auth
-    image: pig-auth
+    container_name: xiangyin-auth
+    image: xiangyin-auth
     networks:
       - spring_cloud_default
 
-  pig-upms:
+  xiangyin-upms:
     build:
-      context: ./pig-upms/pig-upms-biz
+      context: ./xiangyin-upms/xiangyin-upms-biz
     restart: always
-    container_name: pig-upms
-    image: pig-upms
+    container_name: xiangyin-upms
+    image: xiangyin-upms
     networks:
       - spring_cloud_default
 
-  pig-monitor:
+  xiangyin-monitor:
     build:
-      context: ./pig-visual/pig-monitor
+      context: ./xiangyin-visual/xiangyin-monitor
     restart: always
-    image: pig-monitor
-    container_name: pig-monitor
+    image: xiangyin-monitor
+    container_name: xiangyin-monitor
     ports:
       - 5001:5001
     networks:
       - spring_cloud_default
 
-  pig-quartz:
+  xiangyin-quartz:
     build:
-      context: ./pig-visual/pig-quartz
+      context: ./xiangyin-visual/xiangyin-quartz
     restart: always
-    image: pig-quartz
-    container_name: pig-quartz
+    image: xiangyin-quartz
+    container_name: xiangyin-quartz
     networks:
       - spring_cloud_default
 
-  pig-codegen:
+  xiangyin-codegen:
     build:
-      context: ./pig-visual/pig-codegen
+      context: ./xiangyin-visual/xiangyin-codegen
     restart: always
-    image: pig-codegen
-    container_name: pig-codegen
+    image: xiangyin-codegen
+    container_name: xiangyin-codegen
     networks:
       - spring_cloud_default
 

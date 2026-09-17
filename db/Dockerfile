@@ -7,6 +7,6 @@ ENV LANG C.UTF-8
 
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY ./pig.sql /docker-entrypoint-initdb.d
+COPY ./xiangyin.sql /docker-entrypoint-initdb.d
 
-COPY ./pig_config.sql /docker-entrypoint-initdb.d
+COPY ./xiangyin_config.sql /docker-entrypoint-initdb.d

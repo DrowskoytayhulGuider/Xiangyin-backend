@@ -564,7 +564,7 @@ INSERT INTO `sys_menu` VALUES (2923, '敏感词修改', 'admin_sysSensitiveWord_
 INSERT INTO `sys_menu` VALUES (2924, '敏感词删除', 'admin_sysSensitiveWord_del', NULL, NULL, 2920, '1', '1', 3, '0', NULL, '1', ' ', NULL, ' ', NULL, '0');
 INSERT INTO `sys_menu` VALUES (2925, '导入导出', 'admin_sysSensitiveWord_export', NULL, NULL, 2920, '1', '1', 3, '0', NULL, '1', ' ', NULL, ' ', NULL, '0');
 INSERT INTO `sys_menu` VALUES (4000, '系统监控', NULL, '/daemon', NULL, -1, 'iconfont icon-shuju', '1', 3, '0', '0', '0', 'admin', '2023-02-06 20:20:47', 'admin', '2023-11-01 17:12:31', '1');
-INSERT INTO `sys_menu` VALUES (4001, '文档扩展', NULL, 'http://pig-gateway:9999/doc.html', NULL, 9910, 'iconfont icon-swagger', '1', 2, '0', '1', '0', '', '2018-06-26 10:50:32', 'admin', '2023-11-27 14:52:54', '0');
+INSERT INTO `sys_menu` VALUES (4001, '文档扩展', NULL, 'http://xiangyin-gateway:9999/doc.html', NULL, 9910, 'iconfont icon-swagger', '1', 2, '0', '1', '0', '', '2018-06-26 10:50:32', 'admin', '2023-11-27 14:52:54', '0');
 INSERT INTO `sys_menu` VALUES (4002, '缓存监控', NULL, '/tools/data/cache', NULL, 9910, 'iconfont icon-huancunjiankong', '1', 1, '0', '0', '0', 'admin', '2023-05-29 15:12:59', 'admin', '2023-11-27 14:52:56', '0');
 INSERT INTO `sys_menu` VALUES (4003, '缓存监控查看', 'sys_cache_view', NULL, NULL, 4002, '1', '1', 0, '0', NULL, '1', 'admin', '2026-03-27 00:00:00', 'admin', '2026-03-27 00:00:00', '0');
 INSERT INTO `sys_menu` VALUES (4004, '站点统计', NULL, '/tools/data/clarity', NULL, 9910, 'iconfont icon-shuju', '1', 2, '0', '0', '0', 'admin', '2026-03-26 00:00:00', 'admin', '2026-03-26 00:00:00', '0');

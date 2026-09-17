@@ -46,7 +46,7 @@ docker compose build && docker compose up
 
 ### 单体模式
 
-单体模式通过 `boot` profile 启用 `pig-boot` 模块：
+单体模式通过 `boot` profile 启用 `xiangyin-boot` 模块：
 
 ```bash
 mvn clean install -T 4 -Pboot
@@ -78,39 +78,39 @@ docker compose -f docker-compose-boot.yml build && docker compose -f docker-comp
 pig-ui -- https://github.com/pig-mesh/pig-ui
 
 pig
-├── pig-register -- Nacos Server [8848/9848/18080]
-├── pig-gateway -- Spring Cloud Gateway 网关 [9999]
-├── pig-auth -- 授权服务 [3000]
-├── pig-upms -- 通用用户权限管理模块
-│   ├── pig-upms-api -- 通用用户权限管理公共 API
-│   └── pig-upms-biz -- 通用用户权限业务服务 [4000]
-├── pig-common -- 系统公共模块
-│   ├── pig-common-bom -- 全局依赖版本管理
-│   ├── pig-common-core -- 公共工具类核心包
-│   ├── pig-common-data -- MyBatis Plus 与缓存扩展
-│   ├── pig-common-datasource -- 动态数据源封装
-│   ├── pig-common-log -- 日志服务
-│   ├── pig-common-oss -- 文件上传工具类
-│   ├── pig-common-security -- 安全工具类
-│   ├── pig-common-sentinel -- Sentinel 与异常处理封装
-│   ├── pig-common-swagger -- 接口文档封装
-│   ├── pig-common-feign -- OpenFeign 扩展封装
-│   ├── pig-common-excel -- Excel 导入导出封装
-│   └── pig-common-xss -- XSS 安全封装
-├── pig-visual -- 可视化支撑服务
-│   ├── pig-monitor -- 服务监控 [5001]
-│   ├── pig-codegen -- 图形化代码生成 [5002]
-│   └── pig-quartz -- 定时任务管理台 [5007]
-└── pig-boot -- 单体模式启动器 [9999]，通过 `-Pboot` 启用
+├── xiangyin-register -- Nacos Server [8848/9848/18080]
+├── xiangyin-gateway -- Spring Cloud Gateway 网关 [9999]
+├── xiangyin-auth -- 授权服务 [3000]
+├── xiangyin-upms -- 通用用户权限管理模块
+│   ├── xiangyin-upms-api -- 通用用户权限管理公共 API
+│   └── xiangyin-upms-biz -- 通用用户权限业务服务 [4000]
+├── xiangyin-common -- 系统公共模块
+│   ├── xiangyin-common-bom -- 全局依赖版本管理
+│   ├── xiangyin-common-core -- 公共工具类核心包
+│   ├── xiangyin-common-data -- MyBatis Plus 与缓存扩展
+│   ├── xiangyin-common-datasource -- 动态数据源封装
+│   ├── xiangyin-common-log -- 日志服务
+│   ├── xiangyin-common-oss -- 文件上传工具类
+│   ├── xiangyin-common-security -- 安全工具类
+│   ├── xiangyin-common-sentinel -- Sentinel 与异常处理封装
+│   ├── xiangyin-common-swagger -- 接口文档封装
+│   ├── xiangyin-common-feign -- OpenFeign 扩展封装
+│   ├── xiangyin-common-excel -- Excel 导入导出封装
+│   └── xiangyin-common-xss -- XSS 安全封装
+├── xiangyin-visual -- 可视化支撑服务
+│   ├── xiangyin-monitor -- 服务监控 [5001]
+│   ├── xiangyin-codegen -- 图形化代码生成 [5002]
+│   └── xiangyin-quartz -- 定时任务管理台 [5007]
+└── xiangyin-boot -- 单体模式启动器 [9999]，通过 `-Pboot` 启用
 ```
 
 ## 配置说明
 
 - 微服务模式使用 `cloud` profile，默认激活 `dev` 环境配置。
-- 单体模式使用 `boot` profile，`pig-boot` 模块只在该 profile 下参与构建。
-- 网关路由由 `pig-gateway/src/main/resources/application.yml` 和 Nacos 配置维护，不再依赖动态路由表。
+- 单体模式使用 `boot` profile，`xiangyin-boot` 模块只在该 profile 下参与构建。
+- 网关路由由 `xiangyin-gateway/src/main/resources/application.yml` 和 Nacos 配置维护，不再依赖动态路由表。
 - 默认数据库脚本位于 `db/`，业务表初始化到 `pig`，Nacos 配置初始化到 `pig_config`。
-- 包名已统一为 `com.pig4cloud.pig`。
+- 包名已统一为 `com.sleepywang.xiangyin`。
 
 ## 开源共建
 

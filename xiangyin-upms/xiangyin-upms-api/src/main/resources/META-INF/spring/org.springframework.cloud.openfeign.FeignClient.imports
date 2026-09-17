@@ -1,0 +1,10 @@
+com.sleepywang.xiangyin.admin.api.feign.RemoteClientDetailsService
+com.sleepywang.xiangyin.admin.api.feign.RemoteLogService
+com.sleepywang.xiangyin.admin.api.feign.RemoteParamService
+com.sleepywang.xiangyin.admin.api.feign.RemoteFileService
+com.sleepywang.xiangyin.admin.api.feign.RemoteTokenService
+com.sleepywang.xiangyin.admin.api.feign.RemoteUserService
+com.sleepywang.xiangyin.admin.api.feign.RemoteDictService
+com.sleepywang.xiangyin.admin.api.feign.RemoteMenuService
+com.sleepywang.xiangyin.admin.api.feign.RemoteMessageService
+com.sleepywang.xiangyin.admin.api.feign.RemoteApiKeyService

@@ -3,9 +3,9 @@
 ## Project Structure & Module Organization
 
 `pig` aggregates the open-source Spring Cloud services through the root `pom.xml`. Runtime services sit under dedicated
-folders: `pig-register` (Nacos), `pig-gateway` (edge routing), `pig-auth` (authorization), `pig-upms` (user and
-permission), `pig-boot` (single-service launcher), and `pig-visual` (monitor, codegen, quartz). Shared libraries and
-DTOs live in `pig-common`. Sample SQL and Docker build contexts reside in `db/`, while infra manifests live in
+folders: `xiangyin-register` (Nacos), `xiangyin-gateway` (edge routing), `xiangyin-auth` (authorization), `xiangyin-upms` (user and
+permission), `xiangyin-boot` (single-service launcher), and `xiangyin-visual` (monitor, codegen, quartz). Shared libraries and
+DTOs live in `xiangyin-common`. Sample SQL and Docker build contexts reside in `db/`, while infra manifests live in
 `docker-compose.yml`. Every module uses the standard `src/main/java` and `src/test/java` layout.
 
 The open-source edition intentionally excludes workflow, app server, MP, payment, report, BI, multi-tenant, data-scope,
@@ -33,7 +33,7 @@ committing generated artifacts, and call out schema/config updates explicitly.
 ## Security & Configuration Tips
 
 Never commit environment secrets; rely on `docker-compose.yml` plus `.env` overrides ignored by Git. Keep `db/` seed
-data sanitized, and drive end-to-end checks against `pig-register` (ports 8848/9848) with `pig-gateway` (9999) so
+data sanitized, and drive end-to-end checks against `xiangyin-register` (ports 8848/9848) with `xiangyin-gateway` (9999) so
 discovery behavior matches production.
 
 ## Behavioral Guidelines

@@ -23,13 +23,13 @@ services:
     networks:
       - spring_cloud_default
 
-  # 单体的时候注意，服务名称命名为 pig-gateway 对应前端nginx 配置
-  pig-gateway:
+  # 单体的时候注意，服务名称命名为 xiangyin-gateway 对应前端nginx 配置
+  xiangyin-gateway:
     build:
-      context: ./pig-boot
+      context: ./xiangyin-boot
     restart: always
-    container_name: pig-boot
-    image: pig-boot
+    container_name: xiangyin-boot
+    image: xiangyin-boot
     ports:
       - 9999:9999
     networks:

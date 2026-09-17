@@ -22,13 +22,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.pig4cloud</groupId>
-    <artifactId>pig</artifactId>
+    <groupId>com.sleepywang</groupId>
+    <artifactId>xiangyin</artifactId>
     <version>4.1.0</version>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
     <organization>
-        <name>pig4cloud</name>
+        <name>sleepywang</name>
         <url>https://www.pig4cloud.com</url>
     </organization>
 
@@ -98,21 +98,22 @@
     </dependencies>
 
     <modules>
-        <module>pig-register</module>
-        <module>pig-gateway</module>
-        <module>pig-auth</module>
-        <module>pig-upms</module>
-        <module>pig-common</module>
-        <module>pig-visual</module>
+        <module>xiangyin-register</module>
+        <module>xiangyin-gateway</module>
+        <module>xiangyin-auth</module>
+        <module>xiangyin-upms</module>
+        <module>xiangyin-common</module>
+        <module>xiangyin-visual</module>
+        <module>xiangyin-dialect</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <!--pig 公共版本定义-->
             <dependency>
-                <groupId>com.pig4cloud</groupId>
-                <artifactId>pig-common-bom</artifactId>
-                <version>${project.version}</version>
+                <groupId>com.sleepywang</groupId>
+                <artifactId>xiangyin-common-bom</artifactId>
+                <version>4.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -290,7 +291,7 @@
         <profile>
             <id>boot</id>
             <modules>
-                <module>pig-boot</module>
+                <module>xiangyin-boot</module>
             </modules>
         </profile>
     </profiles>
