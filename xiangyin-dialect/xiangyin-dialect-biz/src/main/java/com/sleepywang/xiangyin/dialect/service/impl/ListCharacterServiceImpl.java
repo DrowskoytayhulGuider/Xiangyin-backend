@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * 字表字
  *
  * @author sleepywang
- * @date 2026-09-18 00:57:36
+ * @date 2026-09-18 02:07:49
  */
 @Service
 public class ListCharacterServiceImpl extends ServiceImpl<ListCharacterMapper, ListCharacterEntity> implements ListCharacterService {
