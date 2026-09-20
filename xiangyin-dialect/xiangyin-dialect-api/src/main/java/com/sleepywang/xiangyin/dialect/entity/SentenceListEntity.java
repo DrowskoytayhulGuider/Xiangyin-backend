@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * 句表
  *
  * @author sleepywang
- * @date 2026-09-18 01:31:15
+ * @date 2026-09-20 21:28:46
  */
 @Data
 @TableName("sentence_list")

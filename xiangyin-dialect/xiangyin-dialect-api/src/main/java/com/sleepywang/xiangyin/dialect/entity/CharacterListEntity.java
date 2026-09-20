@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * 字表
  *
  * @author sleepywang
- * @date 2026-09-18 01:26:04
+ * @date 2026-09-20 21:20:38
  */
 @Data
 @TableName("character_list")
@@ -70,30 +70,6 @@ public class CharacterListEntity extends Model<CharacterListEntity> {
     private String keywords;
 
     /**
-     * 省
-     */
-    @Schema(description="省")
-    private String province;
-
-    /**
-     * 市
-     */
-    @Schema(description="市")
-    private String city;
-
-    /**
-     * 县
-     */
-    @Schema(description="县")
-    private String county;
-
-    /**
-     * 乡
-     */
-    @Schema(description="乡")
-    private String town;
-
-    /**
      * 点赞数
      */
     @Schema(description="点赞数")
@@ -112,9 +88,9 @@ public class CharacterListEntity extends Model<CharacterListEntity> {
     private LocalDateTime releaseTime;
 
     /**
-     * 状态（草稿DRAFT、已发布(RELEASED)、已删除(DELETED)）
+     * 状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(WITHDRAW)）
      */
-    @Schema(description="状态（草稿DRAFT、已发布(RELEASED)、已删除(DELETED)）")
+    @Schema(description="状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(WITHDRAW)）")
     private String status;
 
     /**
@@ -123,4 +99,10 @@ public class CharacterListEntity extends Model<CharacterListEntity> {
     @TableField(fill = FieldFill.INSERT)
     @Schema(description="创建时间")
     private LocalDateTime createTime;
+
+    /**
+     * 适用区域（一个列表字符串，列表项为省市县乡，可填至少一级）
+     */
+    @Schema(description="适用区域（一个列表字符串，列表项为省市县乡，可填至少一级）")
+    private String avaliableArea;
 }

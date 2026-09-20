@@ -72,5 +72,5 @@ public class ListCharacterEntity extends Model<ListCharacterEntity> {
 	* 是否删除
 	*/
     @Schema(description="是否删除")
-    private Integer isDeleted;
+    private Boolean isDeleted;
 }

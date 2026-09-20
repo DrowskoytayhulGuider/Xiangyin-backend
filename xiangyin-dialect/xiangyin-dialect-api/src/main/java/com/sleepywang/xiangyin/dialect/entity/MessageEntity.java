@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * 私信消息
  *
  * @author sleepywang
- * @date 2026-09-18 01:10:20
+ * @date 2026-09-20 22:13:31
  */
 @Data
 @TableName("message")
@@ -75,4 +75,28 @@ public class MessageEntity extends Model<MessageEntity> {
     @TableField(fill = FieldFill.INSERT)
     @Schema(description="创建时间")
     private LocalDateTime createTime;
+
+    /**
+     * 引用对象类型（语料-CORPUS、字表-LIST、评论-COMMENT、用户-USER）
+     */
+    @Schema(description="引用对象类型（语料-CORPUS、字表-LIST、评论-COMMENT、用户-USER）")
+    private String objectType;
+
+    /**
+     * 引用对象id
+     */
+    @Schema(description="引用对象id")
+    private Integer objectId;
+
+    /**
+     * 文件类型（AUDIO/VIDEO/PHOTO/TXT/WORD/EXCEL/PDF）
+     */
+    @Schema(description="文件类型（AUDIO/VIDEO/PHOTO/TXT/WORD/EXCEL/PDF）")
+    private String fileType;
+
+    /**
+     * 文件路径
+     */
+    @Schema(description="文件路径")
+    private String filePath;
 }
