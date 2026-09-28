@@ -23,7 +23,7 @@ public class CorpusEntity extends Model<CorpusEntity> {
     /**
      * 语料编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="语料编号")
     private Integer id;
 

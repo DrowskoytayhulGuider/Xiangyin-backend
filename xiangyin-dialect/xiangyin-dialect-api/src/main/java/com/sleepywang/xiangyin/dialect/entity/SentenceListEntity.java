@@ -23,7 +23,7 @@ public class SentenceListEntity extends Model<SentenceListEntity> {
     /**
      * id
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="id")
     private Integer id;
 
@@ -61,7 +61,7 @@ public class SentenceListEntity extends Model<SentenceListEntity> {
      * makerId
      */
     @Schema(description="makerId")
-    private Integer makerId;
+    private Long makerId;
 
     /**
      * keywords

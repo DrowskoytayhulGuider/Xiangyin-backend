@@ -23,7 +23,7 @@ public class DialectClassEntity extends Model<DialectClassEntity> {
     /**
      * 片区编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="片区编号")
     private Integer id;
 
@@ -43,13 +43,13 @@ public class DialectClassEntity extends Model<DialectClassEntity> {
      * 片区层级
      */
     @Schema(description="片区层级")
-    private String level;
+    private Integer level;
 
     /**
      * 划片依据
      */
     @Schema(description="划片依据")
-    private String classificationEvidence‌;
+    private String classificationEvidence;
 
     /**
      * 颜色
@@ -73,7 +73,7 @@ public class DialectClassEntity extends Model<DialectClassEntity> {
      * 是否删除
      */
     @Schema(description="是否删除")
-    private String isDeleted;
+    private Boolean isDeleted;
 
     /**
      * 创建时间

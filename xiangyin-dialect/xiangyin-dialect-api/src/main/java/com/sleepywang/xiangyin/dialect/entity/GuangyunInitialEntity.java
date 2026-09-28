@@ -22,7 +22,7 @@ public class GuangyunInitialEntity extends Model<GuangyunInitialEntity> {
     /**
      * 声母编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="声母编号")
     private Integer id;
 
@@ -35,7 +35,7 @@ public class GuangyunInitialEntity extends Model<GuangyunInitialEntity> {
     /**
      * 清浊（清-0，浊-1）
      */
-    @Schema(description="清浊（清-0，浊-1）")
+    @Schema(description="清浊（全清-0，次清-1，全浊-2，次浊-3）")
     private Integer voicing;
 
     /**

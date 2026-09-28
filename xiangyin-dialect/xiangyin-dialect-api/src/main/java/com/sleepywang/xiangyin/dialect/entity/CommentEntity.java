@@ -23,7 +23,7 @@ public class CommentEntity extends Model<CommentEntity> {
     /**
      * 评论编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="评论编号")
     private Integer id;
 

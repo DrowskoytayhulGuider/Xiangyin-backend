@@ -22,7 +22,7 @@ public class CorpusSentenceEntity extends Model<CorpusSentenceEntity> {
     /**
      * 短句编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="短句编号")
     private Integer id;
 

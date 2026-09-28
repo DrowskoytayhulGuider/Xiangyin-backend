@@ -23,7 +23,7 @@ public class DialectPointEntity extends Model<DialectPointEntity> {
     /**
      * 方言点编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="方言点编号")
     private Integer id;
 

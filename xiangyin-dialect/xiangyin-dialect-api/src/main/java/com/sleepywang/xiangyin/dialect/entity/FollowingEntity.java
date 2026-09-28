@@ -23,7 +23,7 @@ public class FollowingEntity extends Model<FollowingEntity> {
     /**
      * 关注者ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="关注者ID")
     private Integer followerId;
 
@@ -43,5 +43,5 @@ public class FollowingEntity extends Model<FollowingEntity> {
      * 是否解除
      */
     @Schema(description="是否解除")
-    private String isRelieved;
+    private Boolean isRelieved;
 }

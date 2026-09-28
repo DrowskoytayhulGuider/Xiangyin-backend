@@ -23,7 +23,7 @@ public class NoticeEntity extends Model<NoticeEntity> {
     /**
      * 通知编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="通知编号")
     private Integer id;
 

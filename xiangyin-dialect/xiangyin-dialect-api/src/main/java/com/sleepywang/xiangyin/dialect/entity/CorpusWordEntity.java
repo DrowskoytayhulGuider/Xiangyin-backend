@@ -22,7 +22,7 @@ public class CorpusWordEntity extends Model<CorpusWordEntity> {
     /**
      * 词汇编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="词汇编号")
     private Integer id;
 

@@ -65,5 +65,15 @@
             <groupId>com.sleepywang</groupId>
             <artifactId>xiangyin-common-log</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sleepywang</groupId>
+            <artifactId>xiangyin-upms-biz</artifactId>
+            <version>4.1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

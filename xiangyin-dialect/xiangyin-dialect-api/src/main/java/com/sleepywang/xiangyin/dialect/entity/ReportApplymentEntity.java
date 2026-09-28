@@ -23,7 +23,7 @@ public class ReportApplymentEntity extends Model<ReportApplymentEntity> {
     /**
      * 举报申请编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="举报申请编号")
     private Integer id;
 

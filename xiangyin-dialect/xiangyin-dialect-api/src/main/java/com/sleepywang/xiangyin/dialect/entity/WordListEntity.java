@@ -23,7 +23,7 @@ public class WordListEntity extends Model<WordListEntity> {
     /**
      * 句表编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="句表编号")
     private Integer id;
 
@@ -61,7 +61,7 @@ public class WordListEntity extends Model<WordListEntity> {
      * 制作人
      */
     @Schema(description="制作人")
-    private Integer makerId;
+    private Long makerId;
 
     /**
      * 关键字

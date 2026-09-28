@@ -22,7 +22,7 @@ public class ListSentenceEntity extends Model<ListSentenceEntity> {
     /**
      * 短句编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="短句编号")
     private Integer id;
 
@@ -48,5 +48,5 @@ public class ListSentenceEntity extends Model<ListSentenceEntity> {
      * 是否删除
      */
     @Schema(description="是否删除")
-    private Integer isDeleted;
+    private Boolean isDeleted;
 }

@@ -22,7 +22,7 @@ public class FreeSpeechEntity extends Model<FreeSpeechEntity> {
     /**
      * 会话编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="会话编号")
     private Integer id;
 

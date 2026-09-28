@@ -23,7 +23,7 @@ public class DialectSortEntity extends Model<DialectSortEntity> {
     /**
      * 分类编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="分类编号")
     private Integer id;
 
@@ -70,7 +70,7 @@ public class DialectSortEntity extends Model<DialectSortEntity> {
     private String transitionIds;
 
     /**
-     * 颜色（有过渡的话也是逗号分隔）
+     * 颜色（有过渡的话也是逗号分隔），来源为DialectClass
      */
     @Schema(description="颜色（有过渡的话也是逗号分隔）")
     private String colours;
@@ -79,7 +79,7 @@ public class DialectSortEntity extends Model<DialectSortEntity> {
      * 是否删除
      */
     @Schema(description="是否删除")
-    private String isDeleted;
+    private Boolean isDeleted;
 
     /**
      * 分类说明
@@ -97,7 +97,7 @@ public class DialectSortEntity extends Model<DialectSortEntity> {
      * 创建者
      */
     @Schema(description="创建者")
-    private Integer creatorId;
+    private Long creatorId;
 
     /**
      * 创建时间

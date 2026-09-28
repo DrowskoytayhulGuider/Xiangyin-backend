@@ -22,7 +22,7 @@ public class ListCharacterEntity extends Model<ListCharacterEntity> {
 	/**
 	* 单字编号
 	*/
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="单字编号")
     private Integer id;
 
@@ -30,7 +30,7 @@ public class ListCharacterEntity extends Model<ListCharacterEntity> {
 	* 字形
 	*/
     @Schema(description="字形")
-    private String character;
+    private String hanzi;
 
 	/**
 	* 中古声母

@@ -23,7 +23,7 @@ public class ConversationEntity extends Model<ConversationEntity> {
     /**
      * 私信id
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="私信id")
     private Integer id;
 

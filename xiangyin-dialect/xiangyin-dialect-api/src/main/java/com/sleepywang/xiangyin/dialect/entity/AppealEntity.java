@@ -23,7 +23,7 @@ public class AppealEntity extends Model<AppealEntity> {
     /**
      * 上诉编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="上诉编号")
     private Integer id;
 

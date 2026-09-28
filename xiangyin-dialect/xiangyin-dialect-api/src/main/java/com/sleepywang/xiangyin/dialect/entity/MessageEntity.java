@@ -23,7 +23,7 @@ public class MessageEntity extends Model<MessageEntity> {
     /**
      * 消息id
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="消息id")
     private Integer id;
 

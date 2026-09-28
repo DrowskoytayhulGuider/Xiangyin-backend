@@ -22,7 +22,7 @@ public class ListWordEntity extends Model<ListWordEntity> {
     /**
      * 词汇编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="词汇编号")
     private Integer id;
 
@@ -60,5 +60,5 @@ public class ListWordEntity extends Model<ListWordEntity> {
      * 是否删除
      */
     @Schema(description="是否删除")
-    private Integer isDeleted;
+    private Boolean isDeleted;
 }

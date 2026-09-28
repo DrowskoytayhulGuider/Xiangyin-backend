@@ -28,5 +28,9 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-spring</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.sleepywang</groupId>
+            <artifactId>xiangyin-upms-api</artifactId>
+        </dependency>
     </dependencies>
 </project>

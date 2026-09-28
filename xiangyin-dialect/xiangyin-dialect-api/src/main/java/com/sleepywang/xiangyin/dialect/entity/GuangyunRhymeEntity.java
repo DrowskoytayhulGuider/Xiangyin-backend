@@ -22,7 +22,7 @@ public class GuangyunRhymeEntity extends Model<GuangyunRhymeEntity> {
     /**
      * 韵母编号
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     @Schema(description="韵母编号")
     private Integer id;
 
