@@ -1,11 +1,8 @@
 package com.sleepywang.xiangyin.dialect.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.sleepywang.xiangyin.dialect.entity.CharacterListEntity;
 import com.sleepywang.xiangyin.dialect.entity.GuangyunInitialEntity;
 import com.sleepywang.xiangyin.dialect.entity.GuangyunRhymeEntity;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -14,7 +11,7 @@ public class ListCharacterVO {
     /**
      * 字形
      */
-    private String character;
+    private String hanzi;
     /**
      * 中古声母
      */

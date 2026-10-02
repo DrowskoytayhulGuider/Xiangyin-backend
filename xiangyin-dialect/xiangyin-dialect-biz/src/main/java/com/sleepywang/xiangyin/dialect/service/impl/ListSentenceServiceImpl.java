@@ -1,5 +1,6 @@
 package com.sleepywang.xiangyin.dialect.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -36,7 +37,10 @@ public class ListSentenceServiceImpl extends ServiceImpl<ListSentenceMapper, Lis
         listSentenceQuery.setIsDeleted(false);
 //        listSentenceQuery.setMeaning(null);
         listSentenceQuery.setRemark(null);
-        List<ListSentenceEntity> matchListSentence=list(Wrappers.query(listSentenceQuery));
+        List<ListSentenceEntity> matchListSentence=list(Wrappers.<ListSentenceEntity>lambdaQuery()
+                .like(!StrUtil.isBlank(listSentenceQuery.getStandardForm()),ListSentenceEntity::getStandardForm,listSentenceQuery.getStandardForm())
+                .eq(listSentenceQuery.getSentenceListId()!=null,ListSentenceEntity::getSentenceListId,listSentenceQuery.getSentenceListId())
+                .eq(ListSentenceEntity::getIsDeleted,false));
         SentenceListEntity baseSentenceList=new SentenceListEntity();
         baseSentenceList.setId(1);
         baseSentenceList.setName("基础句表");

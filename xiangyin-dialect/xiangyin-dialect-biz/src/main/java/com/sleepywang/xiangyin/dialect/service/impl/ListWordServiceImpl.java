@@ -1,5 +1,6 @@
 package com.sleepywang.xiangyin.dialect.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -53,15 +54,21 @@ public class ListWordServiceImpl extends ServiceImpl<ListWordMapper, ListWordEnt
     public IPage<ListWordVO> getListWordPage(Page page, ListWordEntity listWordQuery)
     {
         listWordQuery.setIsDeleted(false);
-        listWordQuery.setMeaning(null);
+//        listWordQuery.setMeaning(null);
         listWordQuery.setRemark(null);
-        List<ListWordEntity>matchListWord=list(Wrappers.query(listWordQuery));
+
+        List<ListWordEntity>matchListWord=list(Wrappers.<ListWordEntity>lambdaQuery()
+                .like(!StrUtil.isBlank(listWordQuery.getStandardForm()),ListWordEntity::getStandardForm,listWordQuery.getStandardForm())
+                .eq(ListWordEntity::getIsDeleted,false)
+                .eq(listWordQuery.getWordListId()!=null,ListWordEntity::getWordListId,listWordQuery.getWordListId())
+                .eq(!StrUtil.isBlank(listWordQuery.getSpeechPart()),ListWordEntity::getSpeechPart,listWordQuery.getSpeechPart())
+                .like(!StrUtil.isBlank(listWordQuery.getMeaning()),ListWordEntity::getMeaning,listWordQuery.getMeaning()));
         WordListEntity baseWordList=new WordListEntity();
         baseWordList.setId(1);
         baseWordList.setName("基础词表");
         baseWordList.setStatus("RELEASED");
         baseWordList.setMakerId(1L);
-        Map<Integer,WordListEntity> idWordList=new HashMap<>();
+        Map<Integer,WordListEntity> idWordList;
 //        if(listWordQuery.getWordListId()!=null)
 //        {
 //            //单查一个

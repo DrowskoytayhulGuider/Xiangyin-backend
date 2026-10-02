@@ -67,7 +67,7 @@ public class DialectClassEntity extends Model<DialectClassEntity> {
      * 创建者
      */
     @Schema(description="创建者")
-    private Integer creatorId;
+    private Long creatorId;
 
     /**
      * 是否删除

@@ -1,5 +1,6 @@
 package com.sleepywang.xiangyin.dialect.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -43,21 +44,37 @@ public class ListCharacterServiceImpl extends ServiceImpl<ListCharacterMapper, L
     private final GuangyunRhymeMapper guangyunRhymeMapper;
     private final GuangyunInitialMapper guangyunInitialMapper;
     private final CharacterListMapper characterListMapper;
+    private Page<ListCharacterVO> emptyPage(Page<?> page) {
+        long current = Math.max(1L, page.getCurrent());
+        long size = Math.min(page.getSize() > 0 ? page.getSize() : 10L, 100L);
+        Page<ListCharacterVO> empty = new Page<>(current, size, 0);
+        empty.setRecords(Collections.emptyList());
+        return empty;
+    }
     public IPage<ListCharacterVO> getListCharacterPage(Page page, ListCharacterQueryDTO listCharacterQuery)
     {
         GuangyunInitialEntity queryInitial=listCharacterQuery.getGuangyunInitial();
         GuangyunRhymeEntity queryRhyme=listCharacterQuery.getGuangyunRhyme();
-        List<Integer> matchInitialIds=guangyunInitialMapper.selectList(Wrappers.query(queryInitial))//queryInitial=null时是全量返回
+        //null = 这个维度不筛；非 null 才去查 id 列表
+        List<Integer> matchInitialIds = (queryInitial == null) ? null
+                : guangyunInitialMapper.selectList(Wrappers.query(queryInitial))
                 .stream().map(GuangyunInitialEntity::getId).toList();
-        List<Integer> matchRhymeIds=guangyunRhymeMapper.selectList(Wrappers.query(queryRhyme))
+        List<Integer> matchRhymeIds = (queryRhyme == null) ? null
+                : guangyunRhymeMapper.selectList(Wrappers.query(queryRhyme))
                 .stream().map(GuangyunRhymeEntity::getId).toList();
+        //筛了但一条都没匹配： 结果必然为空，直接返回空页（连主表都不用查）
+        if ((matchInitialIds != null && matchInitialIds.isEmpty())
+                || (matchRhymeIds != null && matchRhymeIds.isEmpty())) {
+            return emptyPage(page);
+        }
         List<ListCharacterEntity> matchListCharacter=list(Wrappers.<ListCharacterEntity>lambdaQuery()
-                .in(!matchInitialIds.isEmpty(),ListCharacterEntity::getGuangyunInitialId,matchInitialIds)
-                .in(!matchRhymeIds.isEmpty(),ListCharacterEntity::getGuangyunRhymeId,matchRhymeIds)
+                .in(matchInitialIds!=null,ListCharacterEntity::getGuangyunInitialId,matchInitialIds)
+                .in(matchRhymeIds!=null,ListCharacterEntity::getGuangyunRhymeId,matchRhymeIds)
                 .eq(listCharacterQuery.getId()!=null,ListCharacterEntity::getId,listCharacterQuery.getId())
                 .eq(listCharacterQuery.getGuangyunTone()!=null&& !listCharacterQuery.getGuangyunTone().isEmpty(),ListCharacterEntity::getGuangyunTone,listCharacterQuery.getGuangyunTone())
                 .eq(listCharacterQuery.getCharacterListId()!=null,ListCharacterEntity::getCharacterListId,listCharacterQuery.getCharacterListId())
-                .eq(ListCharacterEntity::getIsDeleted,false));
+                .eq(ListCharacterEntity::getIsDeleted,false)
+                .like(!StrUtil.isBlank(listCharacterQuery.getHanzi()),ListCharacterEntity::getHanzi,listCharacterQuery.getHanzi()));
         Map<Integer,GuangyunInitialEntity>idInitial=guangyunInitialMapper.selectList(Wrappers.query(queryInitial))
                 .stream().collect(Collectors.toMap(GuangyunInitialEntity::getId, Function.identity()));
         Map<Integer,GuangyunRhymeEntity>idRhyme=guangyunRhymeMapper.selectList(Wrappers.query(queryRhyme))
@@ -103,7 +120,7 @@ public class ListCharacterServiceImpl extends ServiceImpl<ListCharacterMapper, L
             listCharacterVO.setMeaning(listCharacter.getMeaning());
             listCharacterVO.setRemark(listCharacter.getRemark());
             listCharacterVO.setGuangyunTone(listCharacter.getGuangyunTone());
-            listCharacterVO.setCharacter(listCharacter.getHanzi());
+            listCharacterVO.setHanzi(listCharacter.getHanzi());
             listCharacterVO.setGuangyunInitial(idInitial.get(listCharacter.getGuangyunInitialId()));
             listCharacterVO.setGuangyunRhyme(idRhyme.get(listCharacter.getGuangyunRhymeId()));
             if(listCharacterQuery.getCharacterListId()==1)

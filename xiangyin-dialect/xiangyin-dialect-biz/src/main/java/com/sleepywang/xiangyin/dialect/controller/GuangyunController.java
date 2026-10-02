@@ -1,6 +1,7 @@
 package com.sleepywang.xiangyin.dialect.controller;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -46,7 +47,10 @@ public class GuangyunController {
 //    @HasPermission({"dialect_guangyun","dialect_onomatopoeia"})
     public R getInitialPage(@ParameterObject Page page, @ParameterObject GuangyunInitialEntity guangyunInitial)
     {
-        LambdaQueryWrapper<GuangyunInitialEntity> wrapper= Wrappers.lambdaQuery(guangyunInitial);
+        LambdaQueryWrapper<GuangyunInitialEntity> wrapper= Wrappers.<GuangyunInitialEntity>lambdaQuery()
+                .like(!StrUtil.isBlank(guangyunInitial.getInitial()),GuangyunInitialEntity::getInitial,guangyunInitial.getInitial())
+                .eq(guangyunInitial.getVoicing()!=null,GuangyunInitialEntity::getVoicing,guangyunInitial.getVoicing())
+                .eq(!StrUtil.isBlank(guangyunInitial.getArticulationPlace()),GuangyunInitialEntity::getArticulationPlace,guangyunInitial.getArticulationPlace());
         return R.ok(guangyunInitialService.page(page,wrapper));
     }
     @Operation(summary = "通过条件查询声母" , description = "通过条件查询声母" )
@@ -85,7 +89,12 @@ public class GuangyunController {
 //    @HasPermission("dialect_guangyun")
     public R getRhymePage(@ParameterObject Page page, @ParameterObject GuangyunRhymeEntity guangyunRhyme)
     {
-        LambdaQueryWrapper<GuangyunRhymeEntity> wrapper= Wrappers.lambdaQuery(guangyunRhyme);
+        LambdaQueryWrapper<GuangyunRhymeEntity> wrapper= Wrappers.<GuangyunRhymeEntity>lambdaQuery()
+                .like(!StrUtil.isBlank(guangyunRhyme.getRhyme()),GuangyunRhymeEntity::getRhyme,guangyunRhyme.getRhyme())
+                .eq(!StrUtil.isBlank(guangyunRhyme.getShe()),GuangyunRhymeEntity::getShe,guangyunRhyme.getShe())
+                .eq(!StrUtil.isBlank(guangyunRhyme.getDeng()),GuangyunRhymeEntity::getDeng,guangyunRhyme.getDeng())
+                .eq(!StrUtil.isBlank(guangyunRhyme.getHu()),GuangyunRhymeEntity::getHu,guangyunRhyme.getHu())
+                .eq(!StrUtil.isBlank(guangyunRhyme.getRhymeEnd()),GuangyunRhymeEntity::getRhymeEnd,guangyunRhyme.getRhymeEnd());
         return R.ok(guangyunRhymeService.page(page,wrapper));
     }
     @Operation(summary = "通过条件查询韵母" , description = "通过条件查询韵母" )

@@ -1,6 +1,7 @@
 package com.sleepywang.xiangyin.dialect.controller;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -11,6 +12,7 @@ import com.sleepywang.xiangyin.dialect.dto.DialectSortQueryDTO;
 import com.sleepywang.xiangyin.dialect.dto.DialectSortSaveDTO;
 import com.sleepywang.xiangyin.dialect.dto.DialectSortUpdateDTO;
 import com.sleepywang.xiangyin.dialect.entity.DialectClassEntity;
+import com.sleepywang.xiangyin.dialect.entity.DialectSortEntity;
 import com.sleepywang.xiangyin.dialect.service.DialectClassService;
 import com.sleepywang.xiangyin.dialect.service.DialectSortService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,19 +39,24 @@ public class DialectClassifyController {
     @Operation(summary = "分页查询方言片",description = "分页查询方言片")
     public R getDialectClassPage(@ParameterObject Page page, @ParameterObject DialectClassEntity dialectClass)
     {
-        QueryWrapper<DialectClassEntity> wrapper= Wrappers.query(dialectClass);
+        LambdaQueryWrapper<DialectClassEntity> wrapper= Wrappers.<DialectClassEntity>lambdaQuery()
+                .eq(DialectClassEntity::getIsDeleted,false)
+                .eq(dialectClass.getPlan()!=null,DialectClassEntity::getPlan,dialectClass.getPlan())
+                .eq(dialectClass.getLevel()!=null,DialectClassEntity::getLevel,dialectClass.getLevel())
+                .like(!StrUtil.isBlank(dialectClass.getName()),DialectClassEntity::getName,dialectClass.getName());
         return R.ok(dialectClassService.page(page,wrapper));
     }
 
-//    /**
-//     * 条件查询方言片
-//     */
-//    @GetMapping("/dialect-class/details")
-//    @Operation(summary = "条件查询方言片",description = "条件查询方言片")
-//    public R getDialectClassDetails(@ParameterObject DialectClassEntity dialectClass)
-//    {
-//        return R.ok(dialectClassService.list(Wrappers.query(dialectClass)));
-//    }
+    /**
+     * 条件查询方言片
+     */
+    @GetMapping("/dialect-class/details")
+    @Operation(summary = "条件查询方言片",description = "条件查询方言片")
+    public R getDialectClassDetails(@ParameterObject DialectClassEntity dialectClass)
+    {
+        dialectClass.setIsDeleted(false);
+        return R.ok(dialectClassService.list(Wrappers.query(dialectClass)));
+    }
 
     /**
      * 新增方言片
@@ -94,6 +101,16 @@ public class DialectClassifyController {
     public R getDialectSortPage(@ParameterObject Page page, @ParameterObject DialectSortQueryDTO dialectSortQueryDTO)
     {
         return R.ok(dialectSortService.getDialectSortPage(page,dialectSortQueryDTO));
+    }
+    /**
+     * 条件查询方言分类
+     */
+    @GetMapping("/dialect-sort/details")
+    @Operation(summary = "条件查询方言分类",description = "条件查询方言分类")
+    public R getDialectSortDetails(@ParameterObject DialectSortEntity dialectSortEntity)
+    {
+        dialectSortEntity.setIsDeleted(false);
+        return R.ok(dialectSortService.list(Wrappers.query(dialectSortEntity)));
     }
 
     /**

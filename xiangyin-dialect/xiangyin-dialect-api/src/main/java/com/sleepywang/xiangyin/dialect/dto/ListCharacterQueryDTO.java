@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class ListCharacterQueryDTO {
     private Integer id;
+    private String hanzi;
     private GuangyunInitialEntity guangyunInitial;
     private GuangyunRhymeEntity guangyunRhyme;
     private String guangyunTone;

@@ -70,28 +70,11 @@ public class WordListEntity extends Model<WordListEntity> {
     private String keywords;
 
     /**
-     * 省
+     * 有效区域
      */
-    @Schema(description="省")
-    private String province;
+    @Schema(description="有效区域")
+    private String avaliableArea;
 
-    /**
-     * 市
-     */
-    @Schema(description="市")
-    private String city;
-
-    /**
-     * 县
-     */
-    @Schema(description="县")
-    private String county;
-
-    /**
-     * 乡
-     */
-    @Schema(description="乡")
-    private String town;
 
     /**
      * 点赞数

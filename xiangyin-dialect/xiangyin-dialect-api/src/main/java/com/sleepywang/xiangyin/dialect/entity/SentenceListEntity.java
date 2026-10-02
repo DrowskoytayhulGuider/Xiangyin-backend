@@ -70,28 +70,10 @@ public class SentenceListEntity extends Model<SentenceListEntity> {
     private String keywords;
 
     /**
-     * province
+     * 有效区域
      */
-    @Schema(description="province")
-    private String province;
-
-    /**
-     * city
-     */
-    @Schema(description="city")
-    private String city;
-
-    /**
-     * county
-     */
-    @Schema(description="county")
-    private String county;
-
-    /**
-     * town
-     */
-    @Schema(description="town")
-    private String town;
+    @Schema(description="有效区域")
+    private String avaliableArea;
 
     /**
      * likeNumber

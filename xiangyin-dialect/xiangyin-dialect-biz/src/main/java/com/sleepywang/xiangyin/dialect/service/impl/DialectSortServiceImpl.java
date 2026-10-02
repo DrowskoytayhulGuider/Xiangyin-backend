@@ -51,7 +51,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
         MPJQueryWrapper<DialectSortEntity> wrapper=new MPJQueryWrapper<>(DialectSortEntity.class);
         wrapper.select("t.id", "t.plan", "t.sort_explanation", "t.create_time",
                         "t.colours", "t.transition_ids", "t.creator_id","t.top_id",
-                        "t.second_id","t.third_id","t.fourth_id","t.fifth_id")
+                        "t.second_id","t.third_id","t.fourth_id","t.fifth_id","t.remark")
                 .leftJoin("dialect_class dc1 on dc1.id=t.top_id and dc1.is_deleted=0")
                 .leftJoin("dialect_class dc2 on dc2.id=t.second_id and dc2.is_deleted=0")
                 .leftJoin("dialect_class dc3 on dc3.id=t.third_id and dc3.is_deleted=0")
@@ -118,6 +118,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
                         ? new String[0]
                         : dialectSort.getColours().split(","));
                 dialectSortVO.setPlan(dialectSort.getPlan());
+                dialectSortVO.setRemark(dialectSort.getRemark());
                 dialectSortVOS.add(dialectSortVO);
             }
         }
@@ -209,7 +210,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
                 return R.failed(false).setMsg("新增方言分类的一级分区所属方案与方言分类不一致");
         }
         //过渡方言分类的分区方言也要一致
-        for(Integer id:dialectSortSaveDTO.getTransitionDialectSortIds())
+        for(Integer id:dialectSortSaveDTO.getTransitionDialectSortIds()==null?new Integer[0]:dialectSortSaveDTO.getTransitionDialectSortIds())
         {
             DialectSortEntity dialectSortById=getOne(Wrappers.<DialectSortEntity>lambdaQuery()
                     .eq(DialectSortEntity::getId,id)
@@ -331,7 +332,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
                         .or()
                         .in(DialectPointEntity::getDialectSort3Id,CollUtil.toList(ids))
                         .or()
-                        .in(DialectPointEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty() ||
+                        .in(DialectPointEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty() &&
                 characterListMapper.selectList(Wrappers.<CharacterListEntity>lambdaQuery()
                         .ne(CharacterListEntity::getStatus,"DELETED")
                         .and(w->w.in(CharacterListEntity::getDialectSort1Id,CollUtil.toList(ids))
@@ -340,7 +341,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
                                 .or()
                                 .in(CharacterListEntity::getDialectSort3Id,CollUtil.toList(ids))
                                 .or()
-                                .in(CharacterListEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty()||
+                                .in(CharacterListEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty()&&
                 wordListMapper.selectList(Wrappers.<WordListEntity>lambdaQuery()
                         .ne(WordListEntity::getStatus,"DELETED")
                         .and(w->w.in(WordListEntity::getDialectSort1Id,CollUtil.toList(ids))
@@ -349,7 +350,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
                                 .or()
                                 .in(WordListEntity::getDialectSort3Id,CollUtil.toList(ids))
                                 .or()
-                                .in(WordListEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty()||
+                                .in(WordListEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty()&&
                 sentenceListMapper.selectList(Wrappers.<SentenceListEntity>lambdaQuery()
                         .ne(SentenceListEntity::getStatus,"DELETED")
                         .and(w->w.in(SentenceListEntity::getDialectSort1Id,CollUtil.toList(ids))
@@ -358,7 +359,8 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
                                 .or()
                                 .in(SentenceListEntity::getDialectSort3Id,CollUtil.toList(ids))
                                 .or()
-                                .in(SentenceListEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty())
+                                .in(SentenceListEntity::getDialectSort4Id,CollUtil.toList(ids)))).isEmpty()&&
+                list(Wrappers.<DialectSortEntity>lambdaQuery().ne(DialectSortEntity::getIsDeleted, true)).stream().noneMatch(e -> isContainTransitionDialectSort(e, new HashSet<>(CollUtil.toList(ids)))))
         {
             //正常逻辑删除
 //            dialectSort.setIsDeleted(true);
@@ -462,6 +464,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
             dialectSortVO.setPlan(dialectSort.getPlan());
             dialectSortVO.setColours(dialectSort.getColours().split(","));
             dialectSortVO.setSortExplanation(dialectSort.getSortExplanation());
+            dialectSortVO.setRemark(dialectSort.getRemark());
             dialectSortVO.setTopClassification(idName.get(dialectSort.getTopId()));
             dialectSortVO.setSecondClassification(idName.get(dialectSort.getSecondId()));
             dialectSortVO.setThirdClassification(idName.get(dialectSort.getThirdId()));

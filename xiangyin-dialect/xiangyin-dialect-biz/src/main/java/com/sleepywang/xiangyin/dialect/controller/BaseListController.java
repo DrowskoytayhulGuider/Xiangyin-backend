@@ -56,17 +56,17 @@ public class BaseListController {
         return R.ok(listCharacterService.getListCharacterPage(page,listCharacterQueryDTO));
     }
 
-//    /**
-//     * 条件查询基础字表中的字
-//     */
-//    @GetMapping("/character/detials")
-//    @Operation(summary = "条件查询基础字表中的字",description = "条件查询基础字表中的字")
-//    public R getCharacterDetails(@ParameterObject ListCharacterEntity listCharacter)
-//    {
-//        listCharacter.setCharacterListId(1);
-//        listCharacter.setIsDeleted(false);
-//        return R.ok(listCharacterService.list(Wrappers.query(listCharacter)));
-//    }
+    /**
+     * 条件查询基础字表中的字，主要是方便编辑对话框回填参数
+     */
+    @GetMapping("/character/details")
+    @Operation(summary = "条件查询基础字表中的字",description = "条件查询基础字表中的字")
+    public R getCharacterDetails(@ParameterObject ListCharacterEntity listCharacter)
+    {
+        listCharacter.setCharacterListId(1);
+        listCharacter.setIsDeleted(false);
+        return R.ok(listCharacterService.list(Wrappers.query(listCharacter)));
+    }
 
     /**
      * 增加基础字表中的字
@@ -121,17 +121,17 @@ public class BaseListController {
         return R.ok(listWordService.getListWordPage(page,listWord));
     }
 
-//    /**
-//     * 条件查询基础词表中的词
-//     */
-//    @GetMapping("/word/detials")
-//    @Operation(summary = "条件查询基础词表中的词",description = "条件查询基础词表中的词")
-//    public R getWordDetails(@ParameterObject ListWordEntity listWord)
-//    {
-//        listWord.setWordListId(1);
-//        listWord.setIsDeleted(false);
-//        return R.ok(listWordService.list(Wrappers.query(listWord)));
-//    }
+    /**
+     * 条件查询基础词表中的词
+     */
+    @GetMapping("/word/details")
+    @Operation(summary = "条件查询基础词表中的词",description = "条件查询基础词表中的词")
+    public R getWordDetails(@ParameterObject ListWordEntity listWord)
+    {
+        listWord.setWordListId(1);
+        listWord.setIsDeleted(false);
+        return R.ok(listWordService.list(Wrappers.query(listWord)));
+    }
 
     /**
      * 增加基础词表中的词
@@ -185,16 +185,16 @@ public class BaseListController {
         return R.ok(listSentenceService.getListSentencePage(page,listSentence));
     }
 
-//    /**
-//     * 条件查询基础句表中的句
-//     */
-//    @GetMapping("/sentence/detials")
-//    @Operation(summary = "条件查询基础句表中的句",description = "条件查询基础句表中的句")
-//    public R getSentenceDetails(@ParameterObject ListSentenceEntity listSentence)
-//    {
-//        listSentence.setSentenceListId(1);
-//        return R.ok(listSentenceService.list(Wrappers.query(listSentence)));
-//    }
+    /**
+     * 条件查询基础句表中的句
+     */
+    @GetMapping("/sentence/details")
+    @Operation(summary = "条件查询基础句表中的句",description = "条件查询基础句表中的句")
+    public R getSentenceDetails(@ParameterObject ListSentenceEntity listSentence)
+    {
+        listSentence.setSentenceListId(1);
+        return R.ok(listSentenceService.list(Wrappers.query(listSentence)));
+    }
 
     /**
      * 增加基础句表中的句

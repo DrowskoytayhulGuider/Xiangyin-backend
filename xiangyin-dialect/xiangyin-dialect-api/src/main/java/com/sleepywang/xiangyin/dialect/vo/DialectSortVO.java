@@ -28,4 +28,6 @@ public class DialectSortVO {
     private String[] colours;
     // 分类说明
     private String sortExplanation;
+    // 备注
+    private String remark;
 }
