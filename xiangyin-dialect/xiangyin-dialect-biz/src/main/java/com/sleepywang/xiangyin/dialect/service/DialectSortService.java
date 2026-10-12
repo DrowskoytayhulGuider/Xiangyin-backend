@@ -12,12 +12,14 @@ import com.sleepywang.xiangyin.dialect.entity.DialectSortEntity;
 import com.sleepywang.xiangyin.dialect.vo.DialectSortVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DialectSortService extends IService<DialectSortEntity> {
     IPage<DialectSortVO> getDialectSortPage(Page page, DialectSortQueryDTO query);
     R<Boolean> saveDialectSort(DialectSortSaveDTO dialectSortSaveDTO);
     R<Boolean> updateDialectSort(DialectSortUpdateDTO dialectSortUpdateDTO);
     R<Boolean> deleteDialectSortLogically(Integer[] ids);
-    List<DialectSortVO> selectDialectSortsByDialectClasses(DialectClassEntity[]dialectClassEntities);
+    List<DialectSortVO>selectDialectSortsByDialectClasses(List<Integer> dialectClassIds);
+    List<DialectSortVO> dialectSortEntities2DialectSortVOs(List<DialectSortEntity>dialectSortEntities, Map<Integer,String> idName, Map<Integer,DialectSortEntity>idDialectSort);
 
 }

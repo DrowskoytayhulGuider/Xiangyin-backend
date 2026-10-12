@@ -23,6 +23,8 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/dialect-classify")
 @RequiredArgsConstructor
@@ -161,8 +163,8 @@ public class DialectClassifyController {
      */
     @GetMapping("/dialect-sort/by-dialect-class")
     @Operation(summary = "筛选所有与已选择方言片(s)关联的方言分类（id+基和过渡方言名称+颜色）-基和其有关、过渡也要和其有关",description = "筛选所有与已选择方言片(s)关联的方言分类（id+基和过渡方言名称+颜色）-基和其有关、过渡也要和其有关")
-    public R selectDialectSortsByDialectClasses(@RequestBody DialectClassEntity[] dialectClassEntities)//到了服务层，先根据id去重
+    public R selectDialectSortsByDialectClasses(@RequestBody List<Integer> dialectClassIds)//到了服务层，先去重
     {
-        return R.ok(dialectSortService.selectDialectSortsByDialectClasses(dialectClassEntities));
+        return R.ok(dialectSortService.selectDialectSortsByDialectClasses(dialectClassIds));
     }
 }

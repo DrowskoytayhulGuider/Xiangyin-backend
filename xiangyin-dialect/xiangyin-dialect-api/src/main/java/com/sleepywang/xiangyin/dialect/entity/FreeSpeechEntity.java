@@ -60,5 +60,5 @@ public class FreeSpeechEntity extends Model<FreeSpeechEntity> {
      * 是否删除
      */
     @Schema(description="是否删除")
-    private Integer isDelected;
+    private Integer isDeleted;
 }

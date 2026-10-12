@@ -46,9 +46,9 @@ public class CorpusEntity extends Model<CorpusEntity> {
     private String faction;
 
     /**
-     * 所受影响普化(POPULARIZATION)、其他方言影响(AFFECTED_BY_OTHER_DIALECT)）
+     * 所受影响普化(POPULARIZATION)、其他方言影响(AFFECTED_BY_OTHER_DIALECT)、NONE）
      */
-    @Schema(description="所受影响普化(POPULARIZATION)、其他方言影响(AFFECTED_BY_OTHER_DIALECT)）")
+    @Schema(description="所受影响普化(POPULARIZATION)、其他方言影响(AFFECTED_BY_OTHER_DIALECT)）、NONE")
     private String affection;
 
     /**
@@ -73,7 +73,7 @@ public class CorpusEntity extends Model<CorpusEntity> {
      * 发音人是否长期居于外地
      */
     @Schema(description="发音人是否长期居于外地")
-    private Integer liveOutside;
+    private Boolean liveOutside;
 
     /**
      * 发音人常住地
@@ -97,7 +97,7 @@ public class CorpusEntity extends Model<CorpusEntity> {
      * 提交人
      */
     @Schema(description="提交人")
-    private Integer submitterId;
+    private Long submitterId;
 
     /**
      * 语料说明
@@ -120,17 +120,17 @@ public class CorpusEntity extends Model<CorpusEntity> {
     /**
      * 点赞数
      */
-    @Schema(description="点赞数")
+    @TableField(exist = false)
     private Integer likeNumber;
 
     /**
-     * 正宗数
+     * 正宗数（满分5分）
      */
-    @Schema(description="正宗数")
-    private Integer authenticNumber;
+    @TableField(exist = false)
+    private Double authenticNumber;
 
     /**
-     * 状态（草稿-DRAFT、待审核-PENDING、已发布-RELEASED、已打回-WITHDRAW、已删除-DELETED）。
+     * 状态（草稿-DRAFT、待审核-PENDING、已发布-RELEASED、已打回-REJECTED、已删除-DELETED）。
      * 状态机说明：用户创建了语料，则设置为草稿，此时只有用户处可见，可编辑。
      * 用户点击发布，变为待审核，此时用户和管理员可见，用户不可编辑，管理员可编辑。
      * 管理员选择审核通过，变为已发布，此时所有用户和管理员可见，都不可编辑。

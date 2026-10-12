@@ -18,7 +18,6 @@ import lombok.EqualsAndHashCode;
 @Schema(description = "广韵韵母")
 public class GuangyunRhymeEntity extends Model<GuangyunRhymeEntity> {
 
-
     /**
      * 韵母编号
      */

@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 @Schema(description = "广韵声母")
 public class GuangyunInitialEntity extends Model<GuangyunInitialEntity> {
 
-
+//TODO 可以多增加几个声母相关的字段，比如组、系
     /**
      * 声母编号
      */

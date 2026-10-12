@@ -95,9 +95,9 @@ public class WordListEntity extends Model<WordListEntity> {
     private LocalDateTime releaseTime;
 
     /**
-     * 状态（草稿DRAFT、已发布(RELEASED)、已删除(DELETED)）
+     * 状态（草稿DRAFT、已发布(RELEASED)、已删除(DELETED)、已打回(REJECTED)）
      */
-    @Schema(description="状态（草稿DRAFT、已发布(RELEASED)、已删除(DELETED)）")
+    @Schema(description="状态（草稿DRAFT、已发布(RELEASED)、已删除(DELETED)、已打回(REJECTED)）")
     private String status;
 
     /**

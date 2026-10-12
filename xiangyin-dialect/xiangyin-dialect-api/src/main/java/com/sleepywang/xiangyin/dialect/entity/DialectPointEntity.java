@@ -115,7 +115,7 @@ public class DialectPointEntity extends Model<DialectPointEntity> {
      * 方言点管理员
      */
     @Schema(description="方言点管理员")
-    private Integer adminId;
+    private Long adminId;
 
     /**
      * 状态（未认领-UNCLAIMED、已发布-RELEASED、已删除-DELETED）

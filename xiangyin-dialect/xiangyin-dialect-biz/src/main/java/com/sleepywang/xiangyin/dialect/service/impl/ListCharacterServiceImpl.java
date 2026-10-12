@@ -15,6 +15,7 @@ import com.sleepywang.xiangyin.dialect.mapper.GuangyunInitialMapper;
 import com.sleepywang.xiangyin.dialect.mapper.GuangyunRhymeMapper;
 import com.sleepywang.xiangyin.dialect.mapper.ListCharacterMapper;
 import com.sleepywang.xiangyin.dialect.service.ListCharacterService;
+import com.sleepywang.xiangyin.dialect.util.CommUtils;
 import com.sleepywang.xiangyin.dialect.vo.ListCharacterVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -129,13 +130,14 @@ public class ListCharacterServiceImpl extends ServiceImpl<ListCharacterMapper, L
                 listCharacterVO.setCharacterList(idCharacterList.get(listCharacter.getCharacterListId()));
             matchListCharacterVOs.add(listCharacterVO);
         }
-        long current=Math.max(1L,page.getCurrent());
-        long size= Math.min(page.getSize()>0? page.getSize() : 10L, 100L);
-        int total=matchListCharacter.size();
-        int from = (int) Math.min((current - 1) * size, total);
-        int to = (int) Math.min(from + size, total);
-        Page<ListCharacterVO>listCharacterVOPage=new Page<>(current,size,total);
-        listCharacterVOPage.setRecords(new ArrayList<>(matchListCharacterVOs.subList(from,to)));
-        return listCharacterVOPage;
+//        long current=Math.max(1L,page.getCurrent());
+//        long size= Math.min(page.getSize()>0? page.getSize() : 10L, 100L);
+//        int total=matchListCharacter.size();
+//        int from = (int) Math.min((current - 1) * size, total);
+//        int to = (int) Math.min(from + size, total);
+//        Page<ListCharacterVO>listCharacterVOPage=new Page<>(current,size,total);
+//        listCharacterVOPage.setRecords(new ArrayList<>(matchListCharacterVOs.subList(from,to)));
+//        return listCharacterVOPage;
+        return CommUtils.List2IPage(page,matchListCharacterVOs);
     }
 }

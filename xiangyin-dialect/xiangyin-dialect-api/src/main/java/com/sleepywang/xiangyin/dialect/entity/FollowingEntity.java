@@ -20,18 +20,21 @@ import java.time.LocalDateTime;
 public class FollowingEntity extends Model<FollowingEntity> {
 
 
+
+    @TableId(type = IdType.AUTO)
+    @Schema(description="ID")
+    private Integer id;
     /**
      * 关注者ID
      */
-    @TableId(type = IdType.AUTO)
     @Schema(description="关注者ID")
-    private Integer followerId;
+    private Long followerId;
 
     /**
      * 被关注者ID
      */
     @Schema(description="被关注者ID")
-    private Integer followeeId;
+    private Long followeeId;
 
     /**
      * 关注时间

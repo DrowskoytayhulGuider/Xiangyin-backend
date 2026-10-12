@@ -88,9 +88,9 @@ public class CharacterListEntity extends Model<CharacterListEntity> {
     private LocalDateTime releaseTime;
 
     /**
-     * 状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(WITHDRAW)）
+     * 状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(REJECTED)）
      */
-    @Schema(description="状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(WITHDRAW)）")
+    @Schema(description="状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(REJECTED)）")
     private String status;
 
     /**

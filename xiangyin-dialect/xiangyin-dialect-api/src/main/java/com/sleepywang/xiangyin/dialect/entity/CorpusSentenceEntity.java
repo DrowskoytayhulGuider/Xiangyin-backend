@@ -66,5 +66,5 @@ public class CorpusSentenceEntity extends Model<CorpusSentenceEntity> {
      * 是否删除
      */
     @Schema(description="是否删除")
-    private Integer isDelected;
+    private Integer isDeleted;
 }

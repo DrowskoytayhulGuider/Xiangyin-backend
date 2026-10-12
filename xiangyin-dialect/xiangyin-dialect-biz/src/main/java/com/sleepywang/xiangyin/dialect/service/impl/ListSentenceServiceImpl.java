@@ -11,6 +11,7 @@ import com.sleepywang.xiangyin.dialect.entity.SentenceListEntity;
 import com.sleepywang.xiangyin.dialect.mapper.ListSentenceMapper;
 import com.sleepywang.xiangyin.dialect.mapper.SentenceListMapper;
 import com.sleepywang.xiangyin.dialect.service.ListSentenceService;
+import com.sleepywang.xiangyin.dialect.util.CommUtils;
 import com.sleepywang.xiangyin.dialect.vo.ListSentenceVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -86,13 +87,14 @@ public class ListSentenceServiceImpl extends ServiceImpl<ListSentenceMapper, Lis
                 listSentenceVO.setSentenceList(idSentenceList.get(listSentence.getSentenceListId()));
             matchListSentenceVOs.add(listSentenceVO);
         }
-        long current=Math.max(1L,page.getCurrent());
-        long size= Math.min(page.getSize()>0? page.getSize() : 10L, 100L);
-        int total=matchListSentence.size();
-        int from = (int) Math.min((current - 1) * size, total);
-        int to = (int) Math.min(from + size, total);
-        Page<ListSentenceVO>listSentenceVOPage=new Page<>(current,size,total);
-        listSentenceVOPage.setRecords(new ArrayList<>(matchListSentenceVOs.subList(from,to)));
-        return listSentenceVOPage;
+//        long current=Math.max(1L,page.getCurrent());
+//        long size= Math.min(page.getSize()>0? page.getSize() : 10L, 100L);
+//        int total=matchListSentence.size();
+//        int from = (int) Math.min((current - 1) * size, total);
+//        int to = (int) Math.min(from + size, total);
+//        Page<ListSentenceVO>listSentenceVOPage=new Page<>(current,size,total);
+//        listSentenceVOPage.setRecords(new ArrayList<>(matchListSentenceVOs.subList(from,to)));
+//        return listSentenceVOPage;
+        return CommUtils.List2IPage(page,matchListSentenceVOs);
     }
 }

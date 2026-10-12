@@ -18,7 +18,9 @@ import lombok.EqualsAndHashCode;
 @Schema(description = "语料词")
 public class CorpusWordEntity extends Model<CorpusWordEntity> {
 
-
+    //TODO 在数据库和实体中加一个关键字字段，并补齐按关键字筛选的功能
+    // 这个字段用来给采集者标记一些发音人的特殊语言现象（比如儿化、子缀、连读变调标记（阳平+阴平）等）。选一两个标记做典型就行了
+    // 前端以标签的形式显示
     /**
      * 词汇编号
      */

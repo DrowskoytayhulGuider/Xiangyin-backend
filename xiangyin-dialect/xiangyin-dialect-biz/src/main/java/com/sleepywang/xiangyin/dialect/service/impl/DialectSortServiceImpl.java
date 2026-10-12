@@ -17,6 +17,7 @@ import com.sleepywang.xiangyin.dialect.dto.DialectSortUpdateDTO;
 import com.sleepywang.xiangyin.dialect.entity.*;
 import com.sleepywang.xiangyin.dialect.mapper.*;
 import com.sleepywang.xiangyin.dialect.service.*;
+import com.sleepywang.xiangyin.dialect.util.CommUtils;
 import com.sleepywang.xiangyin.dialect.vo.DialectSortVO;
 import com.sleepywang.xiangyin.dialect.vo.TransitionDialectVO;
 import io.swagger.v3.oas.models.security.SecurityScheme;
@@ -47,7 +48,6 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
     private final DialectPointMapper dialectPointMapper;
     public IPage<DialectSortVO> getDialectSortPage(Page page, DialectSortQueryDTO query)
     {
-        //TODO 试试用like优化一下逻辑
         MPJQueryWrapper<DialectSortEntity> wrapper=new MPJQueryWrapper<>(DialectSortEntity.class);
         wrapper.select("t.id", "t.plan", "t.sort_explanation", "t.create_time",
                         "t.colours", "t.transition_ids", "t.creator_id","t.top_id",
@@ -92,7 +92,6 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
             }
             if(!isRejected)
             {
-
                 DialectSortVO dialectSortVO=new DialectSortVO();
                 dialectSortVO.setId(dialectSort.getId());
                 dialectSortVO.setTopClassification(nameMap.get(dialectSort.getTopId()));
@@ -122,19 +121,7 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
                 dialectSortVOS.add(dialectSortVO);
             }
         }
-        //打印调试日志
-        for(DialectSortVO dialectSortVO:dialectSortVOS)
-        {
-            log.debug(dialectSortVO.getId().toString());
-        }
-        long current=Math.max(1L,page.getCurrent());
-        long size= Math.min(page.getSize()>0? page.getSize() : 10L, 100L);
-        int total=dialectSortVOS.size();
-        int from = (int) Math.min((current - 1) * size, total);
-        int to = (int) Math.min(from + size, total);
-        Page<DialectSortVO>dialectSortEntityPage=new Page<>(current,size,total);
-        dialectSortEntityPage.setRecords(new ArrayList<>(dialectSortVOS.subList(from,to)));
-        return dialectSortEntityPage;
+        return CommUtils.List2IPage(page,dialectSortVOS);
     }
     private Integer getLastLNotNullLevelDialectClassId(DialectSortSaveDTO dialectSortSaveDTO)
     {
@@ -389,10 +376,10 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
         return !Collections.disjoint(dialectSortTransitionIds,transitionIds);
     }
     //我们规定dialectClassEntities数值的第一个是topId、第二个是secondId、第三个是thirdId...
-    public List<DialectSortVO>selectDialectSortsByDialectClasses(DialectClassEntity[]dialectClassEntities)
+    public List<DialectSortVO>selectDialectSortsByDialectClasses(List<Integer> dialectClassIds)
     {
-        List<Integer>dialectClassIds=CollUtil.toList(dialectClassEntities).stream().map(DialectClassEntity::getId).toList();//.collect(Collectors.toSet());
-        if(dialectClassIds.size()>5)
+//        List<Integer>dialectClassIds=CollUtil.toList(dialectClassEntities).stream().map(DialectClassEntity::getId).toList();//.collect(Collectors.toSet());
+        if(dialectClassIds==null||dialectClassIds.size()>5|| dialectClassIds.isEmpty())
             return null;
         //把与其关联的基类全部筛出来
         List<DialectSortEntity>linkedBaseDialectSort=list(Wrappers.<DialectSortEntity>lambdaQuery()
@@ -456,10 +443,19 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
         Map<Integer,DialectSortEntity>idDialectSort=list(Wrappers.<DialectSortEntity>lambdaQuery()
                 .eq(DialectSortEntity::getIsDeleted,false)
                 .eq(DialectSortEntity::getPlan,planId)).stream().collect(Collectors.toMap(DialectSortEntity::getId, Function.identity()));
+        return dialectSortEntities2DialectSortVOs(linkedDialectSort,idName,idDialectSort);
+    }
+
+    public List<DialectSortVO> dialectSortEntities2DialectSortVOs(List<DialectSortEntity>dialectSortEntities, Map<Integer,String>idName,Map<Integer,DialectSortEntity>idDialectSort)
+    {
         List<DialectSortVO>allDialectSortVOs=new ArrayList<>();
-        for(DialectSortEntity dialectSort:linkedDialectSort)
+        for(DialectSortEntity dialectSort:dialectSortEntities)
         {
             DialectSortVO dialectSortVO=new DialectSortVO();
+            if(dialectSort==null) {
+                allDialectSortVOs.add(null);
+                continue;
+            }
             dialectSortVO.setId(dialectSort.getId());
             dialectSortVO.setPlan(dialectSort.getPlan());
             dialectSortVO.setColours(dialectSort.getColours().split(","));
@@ -504,4 +500,5 @@ public class DialectSortServiceImpl extends ServiceImpl<DialectSortMapper, Diale
         }
         return allDialectSortVOs;
     }
+
 }

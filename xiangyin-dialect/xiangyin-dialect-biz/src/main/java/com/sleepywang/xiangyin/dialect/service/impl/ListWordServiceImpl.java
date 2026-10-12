@@ -15,6 +15,7 @@ import com.sleepywang.xiangyin.dialect.mapper.ListWordMapper;
 import com.sleepywang.xiangyin.dialect.mapper.WordListMapper;
 import com.sleepywang.xiangyin.dialect.service.ListWordService;
 //import com.sleepywang.xiangyin.dialect.vo.ListCharacterVO;
+import com.sleepywang.xiangyin.dialect.util.CommUtils;
 import com.sleepywang.xiangyin.dialect.vo.ListWordVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
@@ -121,13 +122,14 @@ public class ListWordServiceImpl extends ServiceImpl<ListWordMapper, ListWordEnt
                 listWordVO.setWordList(idWordList.get(listWord.getWordListId()));
             matchListWordVOs.add(listWordVO);
         }
-        long current=Math.max(1L,page.getCurrent());
-        long size= Math.min(page.getSize()>0? page.getSize() : 10L, 100L);
-        int total=matchListWord.size();
-        int from = (int) Math.min((current - 1) * size, total);
-        int to = (int) Math.min(from + size, total);
-        Page<ListWordVO>listWordVOPage=new Page<>(current,size,total);
-        listWordVOPage.setRecords(new ArrayList<>(matchListWordVOs.subList(from,to)));
-        return listWordVOPage;
+//        long current=Math.max(1L,page.getCurrent());
+//        long size= Math.min(page.getSize()>0? page.getSize() : 10L, 100L);
+//        int total=matchListWord.size();
+//        int from = (int) Math.min((current - 1) * size, total);
+//        int to = (int) Math.min(from + size, total);
+//        Page<ListWordVO>listWordVOPage=new Page<>(current,size,total);
+//        listWordVOPage.setRecords(new ArrayList<>(matchListWordVOs.subList(from,to)));
+//        return listWordVOPage;
+        return CommUtils.List2IPage(page,matchListWordVOs);
     }
 }

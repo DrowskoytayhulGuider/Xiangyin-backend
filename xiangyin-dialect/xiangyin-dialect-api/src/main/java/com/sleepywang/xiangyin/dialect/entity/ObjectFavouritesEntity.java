@@ -2,9 +2,12 @@ package com.sleepywang.xiangyin.dialect.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.micrometer.core.instrument.Meter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 
 /**
@@ -19,7 +22,9 @@ import java.time.LocalDateTime;
 @Schema(description = "对象-收藏夹关联")
 public class ObjectFavouritesEntity extends Model<ObjectFavouritesEntity> {
 
-
+    @TableId(type= IdType.AUTO)
+    @Schema(description="id")
+    private String id;
     /**
      * 对象类型
      */

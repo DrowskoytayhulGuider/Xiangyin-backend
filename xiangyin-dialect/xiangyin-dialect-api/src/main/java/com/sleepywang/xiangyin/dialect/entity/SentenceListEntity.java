@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Schema(description = "句表")
 public class SentenceListEntity extends Model<SentenceListEntity> {
 
-
     /**
      * id
      */
@@ -94,9 +93,9 @@ public class SentenceListEntity extends Model<SentenceListEntity> {
     private LocalDateTime releaseTime;
 
     /**
-     * status
+     * 状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(REJECTED)）
      */
-    @Schema(description="status")
+    @Schema(description="状态（草稿DRAFT、待审核-PENDING、已发布(RELEASED)、已删除(DELETED)、已打回(REJECTED)）")
     private String status;
 
     /**
